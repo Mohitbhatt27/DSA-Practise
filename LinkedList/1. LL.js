@@ -58,22 +58,34 @@ function deleteTail(head) {
   return head;
 }
 
-function addAt(head, data, idx) {
-  if (idx == 0) {
+function addAt(head, data, i) {
+
+  if (i == 0) {
     return addAtHead(head, data);
   }
 
-  let temp = head;
-  for (let i = 0; i < idx - 1 && temp != null; i++) { //go till index i-1
+  let temp = head; 
+  for (let i = 0; i < i - 1; i++) { //going till index i-1
     temp = temp.next;
   }
-  if (temp == null) {
-    console.log("Cannot add a node at this index");
-    return;
+
+  let newnode = createNode(data);
+  newnode.next = temp.next;
+  temp.next = newnode;
+
+  return head;
+}
+
+function deleteAt(head, i){
+  if(i==0) return deleteHead;
+  let temp = head; 
+  for (let i = 0; i < i - 1; i++) { //going till index i-1
+    temp = temp.next;
   }
-  let newNode = createNode(data);
-  newNode.next = temp.next;
-  temp.next = newNode;
+  let n = temp.next.next;
+  temp.next = n;
+  return head;
+
 }
 
 function length(head){
@@ -87,6 +99,11 @@ function length(head){
     return;
 }
 
+// if (temp == null) {
+//   console.log("Cannot add a node at this index");
+//   return;
+
+
 
 
 let head = null;
@@ -97,5 +114,9 @@ head = addAtTail(head, 60);
 head = deleteHead(head);
 display();
 length(head);
-console.log(searchInALinkedList(head,1,0));
+head = addAt(head,12,2);
+display();
+head = deleteAt(head,2);
+display();
+
 
